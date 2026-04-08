@@ -30,7 +30,8 @@ import {
   ChevronRight,
   Users,
   Layers,
-  ZoomIn
+  ZoomIn,
+  User
 } from "lucide-react";
 import {
   Accordion,
@@ -710,11 +711,17 @@ const Footer = ({ t }) => (
         <div>
           <h4 className="font-bold text-sm mb-3">{t.footer.contact}</h4>
           <ul className="space-y-2 text-xs">
-            <li className="flex items-center gap-2 text-white/50">
-              <Phone className="w-3.5 h-3.5 text-[#2ED573]" />+57 304 407 2499
+            <li className="flex items-center gap-2 text-white/50" data-testid="footer-owner">
+              <User className="w-3.5 h-3.5 text-[#2ED573]" />
+              <span>{t.footer.ownerLabel}: {t.footer.ownerName}</span>
             </li>
             <li className="flex items-center gap-2 text-white/50">
-              <Mail className="w-3.5 h-3.5 text-[#2ED573]" />dekoraclean@hotmail.com
+              <Phone className="w-3.5 h-3.5 text-[#2ED573]" />
+              <a href="tel:+573044072499" className="hover:text-[#2ED573] transition-colors">+57 304 407 2499</a>
+            </li>
+            <li className="flex items-center gap-2 text-white/50">
+              <Mail className="w-3.5 h-3.5 text-[#2ED573]" />
+              <a href="mailto:dekoraclean@hotmail.com" className="hover:text-[#2ED573] transition-colors">dekoraclean@hotmail.com</a>
             </li>
             <li className="flex items-start gap-2 text-white/50">
               <MapPin className="w-3.5 h-3.5 text-[#2ED573] mt-0.5 flex-shrink-0" />Calle 19 No.96 G - 76 - Int. 7, Colombia
