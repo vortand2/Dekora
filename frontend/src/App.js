@@ -309,9 +309,9 @@ const HeroSection = ({ t }) => {
           </div>
 
           {/* Right - Contact Form */}
-          <div className="hero-form animate-fade-in-up animation-delay-200" data-testid="contact-form">
+          <div className="hero-form animate-fade-in-up animation-delay-200 relative z-20" data-testid="contact-form">
             <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mb-6">{t.form.title}</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
               <div className="grid sm:grid-cols-2 gap-4">
                 <input
                   type="text"
@@ -370,7 +370,7 @@ const HeroSection = ({ t }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all duration-300 px-8 py-4 rounded-full disabled:opacity-50 disabled:cursor-not-allowed relative z-10"
                 data-testid="form-submit"
               >
                 {isSubmitting ? "..." : t.form.submit}
@@ -701,7 +701,7 @@ const CTASection = ({ t }) => {
 
           <div className="hidden lg:block">
             <img
-              src="https://images.unsplash.com/photo-1596263373351-e31e9c1a5a24?auto=format&fit=crop&w=600&q=80"
+              src="https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg?auto=compress&cs=tinysrgb&w=600"
               alt="Cleaning professional"
               className="rounded-2xl shadow-2xl"
             />
