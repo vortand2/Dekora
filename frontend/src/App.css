@@ -1,34 +1,111 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Dekora Clean - Custom Styles */
+
+/* Header styles */
+.header-blur {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Button hover effects */
+.btn-primary {
+    @apply bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all duration-300 px-8 py-4 rounded-full flex items-center justify-center gap-2;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
 }
 
-.App-link {
-    color: #61dafb;
+.btn-secondary {
+    @apply bg-white text-stone-900 border border-stone-200 font-medium hover:bg-stone-50 transition-all duration-300 px-8 py-4 rounded-full flex items-center justify-center gap-2;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Card styles */
+.card-hover {
+    @apply bg-white border border-stone-100 rounded-2xl transition-all duration-300;
+    box-shadow: 0 8px 30px rgb(0 0 0 / 0.04);
+}
+
+.card-hover:hover {
+    box-shadow: 0 12px 40px rgb(0 0 0 / 0.08);
+    transform: translateY(-4px);
+}
+
+/* Form input styles */
+.form-input {
+    @apply w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-900 outline-none transition-all;
+}
+
+.form-input:focus {
+    @apply ring-2 ring-blue-600 border-transparent;
+}
+
+.form-input::placeholder {
+    @apply text-stone-400;
+}
+
+/* WhatsApp button */
+.whatsapp-float {
+    @apply fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center transition-all duration-300;
+}
+
+.whatsapp-float:hover {
+    @apply bg-[#128C7E];
+    transform: scale(1.1);
+}
+
+/* Service card icon container */
+.service-icon {
+    @apply w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mb-4;
+}
+
+/* Stats counter */
+.stat-number {
+    @apply text-4xl sm:text-5xl font-bold text-blue-600;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Section spacing */
+.section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+}
+
+/* Container */
+.container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Gradient text */
+.gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent;
+}
+
+/* Testimonial card */
+.testimonial-card {
+    @apply bg-white p-6 sm:p-8 rounded-2xl border border-stone-100;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 0.03);
+}
+
+/* FAQ accordion custom styles */
+.faq-trigger {
+    @apply flex w-full items-center justify-between py-4 text-left font-medium text-stone-900 hover:text-blue-600 transition-colors;
+}
+
+/* Hero form */
+.hero-form {
+    @apply bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-2xl;
+}
+
+/* Navigation link */
+.nav-link {
+    @apply text-stone-600 hover:text-blue-600 transition-colors font-medium;
+}
+
+.nav-link.active {
+    @apply text-blue-600;
+}
+
+/* Language toggle */
+.lang-toggle {
+    @apply flex items-center gap-2 px-3 py-2 rounded-full border border-stone-200 hover:border-blue-600 transition-colors cursor-pointer;
 }
