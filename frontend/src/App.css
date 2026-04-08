@@ -1,111 +1,329 @@
-/* Dekora Clean - Custom Styles */
+/* Dekora Clean - Template Matching Styles */
 
-/* Header styles */
-.header-blur {
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+/* Container */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
-/* Button hover effects */
-.btn-primary {
-    @apply bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all duration-300 px-8 py-4 rounded-full flex items-center justify-center gap-2;
+@media (min-width: 768px) {
+    .container {
+        padding: 0 40px;
+    }
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
 }
 
-.btn-secondary {
-    @apply bg-white text-stone-900 border border-stone-200 font-medium hover:bg-stone-50 transition-all duration-300 px-8 py-4 rounded-full flex items-center justify-center gap-2;
+.header-scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
 }
 
-/* Card styles */
-.card-hover {
-    @apply bg-white border border-stone-100 rounded-2xl transition-all duration-300;
-    box-shadow: 0 8px 30px rgb(0 0 0 / 0.04);
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #1E272E 0%, #2C3A47 100%);
+    overflow: hidden;
 }
 
-.card-hover:hover {
-    box-shadow: 0 12px 40px rgb(0 0 0 / 0.08);
-    transform: translateY(-4px);
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
 }
 
-/* Form input styles */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(30, 39, 46, 0.85) 0%, rgba(30, 39, 46, 0.6) 100%);
+}
+
+/* Form Card */
+.form-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
 .form-input {
-    @apply w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-900 outline-none transition-all;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #E8ECEF;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s;
+    background: #F8FAFB;
 }
 
 .form-input:focus {
-    @apply ring-2 ring-blue-600 border-transparent;
+    outline: none;
+    border-color: #2ED573;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(46, 213, 115, 0.1);
 }
 
 .form-input::placeholder {
-    @apply text-stone-400;
+    color: #A4B0BE;
 }
 
-/* WhatsApp button */
-.whatsapp-float {
-    @apply fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center transition-all duration-300;
+/* Buttons */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: #2ED573;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.whatsapp-float:hover {
-    @apply bg-[#128C7E];
-    transform: scale(1.1);
+.btn-primary:hover {
+    background: #26B85F;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(46, 213, 115, 0.3);
 }
 
-/* Service card icon container */
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: white;
+    color: #1E272E;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #E8ECEF;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    border-color: #2ED573;
+    color: #2ED573;
+}
+
+/* Service Card */
+.service-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid #E8ECEF;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    border-color: #2ED573;
+    box-shadow: 0 20px 40px rgba(46, 213, 115, 0.1);
+    transform: translateY(-5px);
+}
+
 .service-icon {
-    @apply w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mb-4;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2ED573 0%, #7BED9F 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 20px;
 }
 
-/* Stats counter */
+/* Stats Card */
+.stat-card {
+    text-align: center;
+    padding: 24px;
+}
+
 .stat-number {
-    @apply text-4xl sm:text-5xl font-bold text-blue-600;
-    font-family: 'Outfit', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: #2ED573;
+    line-height: 1;
 }
 
-/* Section spacing */
-.section-padding {
-    @apply py-16 sm:py-20 lg:py-24;
+.stat-label {
+    font-size: 14px;
+    color: #57606F;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* Container */
-.container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-/* Gradient text */
-.gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent;
-}
-
-/* Testimonial card */
+/* Testimonial Card */
 .testimonial-card {
-    @apply bg-white p-6 sm:p-8 rounded-2xl border border-stone-100;
-    box-shadow: 0 4px 20px rgb(0 0 0 / 0.03);
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid #E8ECEF;
 }
 
-/* FAQ accordion custom styles */
+/* Feature Item */
+.feature-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.feature-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: #2ED573;
+}
+
+/* Section Styles */
+.section {
+    padding: 80px 0;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: 100px 0;
+    }
+}
+
+.section-gray {
+    background: #F8FAFB;
+}
+
+.section-dark {
+    background: #1E272E;
+    color: white;
+}
+
+/* WhatsApp Float */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    z-index: 99;
+    transition: all 0.3s;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+}
+
+/* Text Styles */
+.text-gradient {
+    background: linear-gradient(135deg, #2ED573 0%, #7BED9F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Heading Styles */
+.heading-lg {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #1E272E;
+}
+
+@media (min-width: 768px) {
+    .heading-lg {
+        font-size: 48px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .heading-lg {
+        font-size: 56px;
+    }
+}
+
+.heading-md {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #1E272E;
+}
+
+@media (min-width: 768px) {
+    .heading-md {
+        font-size: 36px;
+    }
+}
+
+.overline {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #2ED573;
+}
+
+/* FAQ Accordion */
+.faq-item {
+    background: white;
+    border: 1px solid #E8ECEF;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
 .faq-trigger {
-    @apply flex w-full items-center justify-between py-4 text-left font-medium text-stone-900 hover:text-blue-600 transition-colors;
+    width: 100%;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: #1E272E;
+    text-align: left;
+    transition: color 0.2s;
 }
 
-/* Hero form */
-.hero-form {
-    @apply bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-2xl;
+.faq-trigger:hover {
+    color: #2ED573;
 }
 
-/* Navigation link */
-.nav-link {
-    @apply text-stone-600 hover:text-blue-600 transition-colors font-medium;
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, #2ED573 0%, #26B85F 100%);
+    position: relative;
+    overflow: hidden;
 }
 
-.nav-link.active {
-    @apply text-blue-600;
-}
-
-/* Language toggle */
-.lang-toggle {
-    @apply flex items-center gap-2 px-3 py-2 rounded-full border border-stone-200 hover:border-blue-600 transition-colors cursor-pointer;
+.cta-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image: radial-gradient(circle at 20% 50%, white 1px, transparent 1px);
+    background-size: 40px 40px;
 }
