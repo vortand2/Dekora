@@ -10,19 +10,19 @@ export const translations = {
     },
     // Hero
     hero: {
-      tagline: "CLEANING SERVICES TAILORED TO YOUR NEEDS",
+      tagline: "CLEANING & DECORATION SERVICES",
       title: "Professional",
-      titleHighlight: "Clean",
-      titleEnd: "Services",
-      subtitle: "Transform your home or office with our professional cleaning services. Reliable, background-checked cleaners delivering impeccable results.",
+      titleHighlight: "Cleaning",
+      titleEnd: "& Maintenance",
+      subtitle: "Creating more pleasant environments. Professional decoration and maintenance services for your home and office in Colombia.",
       cta: "Call Us",
       features: {
         professional: "Professional Team",
         professionalDesc: "Trained & certified staff",
         onTime: "On Time Service",
         onTimeDesc: "We value your time",
-        transparent: "Transparent Pricing",
-        transparentDesc: "No hidden costs",
+        transparent: "Free Quotes",
+        transparentDesc: "At your doorstep",
         eco: "Eco Friendly",
         ecoDesc: "Safe products",
       },
@@ -35,13 +35,14 @@ export const translations = {
       phone: "Phone",
       service: "Service Type",
       serviceOptions: {
-        residential: "Residential Cleaning",
-        commercial: "Commercial Cleaning",
-        deep: "Deep Cleaning",
         curtains: "Curtains & Blinds",
         carpets: "Carpets & Rugs",
         furniture: "Furniture Cleaning",
-        upholstery: "Automotive Upholstery",
+        linens: "Linens & Bedding",
+        flooring: "Wood & Laminate Flooring",
+        automotive: "Automotive Upholstery",
+        repairs: "Property Repairs",
+        laundry: "Laundry & Tailoring",
       },
       message: "How can we help you?",
       submit: "Get Quote",
@@ -57,35 +58,43 @@ export const translations = {
     },
     // Services
     services: {
-      tagline: "COMPREHENSIVE CLEANING FOR EVERY NEED",
+      tagline: "COMPREHENSIVE SERVICES FOR EVERY NEED",
       title: "Our",
       titleHighlight: "Services",
-      titleEnd: "That Will Make You Comfortable",
-      subtitle: "From deep cleans to routine upkeep, we offer tailored solutions for every space.",
+      titleEnd: "For Your Comfort",
+      subtitle: "From deep cleaning to decoration and maintenance, we offer tailored solutions for every space.",
       items: {
-        residential: {
-          title: "Home Cleaning",
-          desc: "Complete cleaning of bedrooms, bathrooms, kitchens, and living areas for a spotless home every time.",
-        },
-        commercial: {
-          title: "Office Cleaning",
-          desc: "Regular or one-time cleaning of workspaces, desks, and common areas to create a clean, productive environment.",
-        },
-        moveInOut: {
-          title: "Move-In/Move-Out",
-          desc: "Deep cleaning for moving day, ensuring your old or new space is perfectly clean and ready.",
-        },
-        deep: {
-          title: "Deep Cleaning",
-          desc: "Intensive, top-to-bottom cleaning for your home or office, reaching corners and spots that need extra attention.",
-        },
         curtains: {
           title: "Curtains & Blinds",
-          desc: "Sale, washing, and maintenance of classic and modern curtains including Japanese panels, blackout, roman, and more.",
+          desc: "Sale, washing, and maintenance of classic and modern curtains: Japanese panels, blackout, Roman shades, screens, horizontal and vertical blinds.",
+        },
+        carpets: {
+          title: "Carpets & Rugs",
+          desc: "Professional sale and washing of all types of carpets and rugs, restoring their original beauty and freshness.",
         },
         furniture: {
           title: "Furniture Cleaning",
-          desc: "Professional cleaning for living room, dining room, and office furniture to keep them looking fresh.",
+          desc: "Deep cleaning for living room, dining room, and office furniture. We restore the beauty of your upholstered pieces.",
+        },
+        linens: {
+          title: "Linens & Bedding",
+          desc: "Sale and professional washing of linens, bedding, and delicate fabrics with special care.",
+        },
+        flooring: {
+          title: "Wood & Laminate Flooring",
+          desc: "Sale, installation, and maintenance of wooden and laminate floors. Complete flooring solutions.",
+        },
+        automotive: {
+          title: "Automotive Upholstery",
+          desc: "Professional cleaning of car seats, carpets, and interior upholstery. Your vehicle like new.",
+        },
+        repairs: {
+          title: "Property Repairs",
+          desc: "Civil works and locative repairs. Minor improvements and maintenance for your property.",
+        },
+        laundry: {
+          title: "Laundry & Tailoring",
+          desc: "Professional laundry and tailoring services for your garments and special fabrics.",
         },
       },
     },
@@ -98,16 +107,16 @@ export const translations = {
       subtitle: "Whether it's your home or workspace, our friendly team arrives on time, uses safe products, and leaves your place sparkling.",
       features: {
         insured: {
-          title: "Fully Insured and Background-Checked Cleaners",
-          desc: "Every cleaner passes thorough background checks and is fully insured for your peace of mind.",
+          title: "Professional & Verified Staff",
+          desc: "Every team member is trained and verified for your peace of mind.",
         },
         flexible: {
-          title: "Flexible Scheduling That Fits Your Life",
-          desc: "Book a time that's best for you—mornings, evenings, or weekends.",
+          title: "Flexible Scheduling",
+          desc: "Book a time that works for you—mornings, evenings, or weekends.",
         },
         eco: {
-          title: "Eco-Friendly Products, Safe for Kids and Pets",
-          desc: "We use non-toxic, green cleaning products that are gentle and effective.",
+          title: "Eco-Friendly Products",
+          desc: "We use non-toxic, green cleaning products that are safe and effective.",
         },
         guarantee: {
           title: "100% Satisfaction Guarantee",
@@ -121,41 +130,41 @@ export const translations = {
       title: "Simple Steps to a",
       titleHighlight: "Cleaner",
       titleEnd: "Space",
-      subtitle: "Our trained professionals deliver exceptional results using powerful cleaning agents and proven techniques.",
+      subtitle: "Our trained professionals deliver exceptional results using the best products and proven techniques.",
       steps: {
         quote: {
           title: "Get a Quote",
-          desc: "Fill out our quick online form or give us a call.",
+          desc: "Fill out our form or call us. Free quotes at your doorstep!",
         },
         book: {
           title: "Book Your Service",
           desc: "Choose your preferred time. We work around your schedule.",
         },
         relax: {
-          title: "Relax",
-          desc: "Our team does the rest. You come back to a sparkling space.",
+          title: "Relax & Enjoy",
+          desc: "Our team does the work. You enjoy the results.",
         },
       },
-      cta: "Book a Cleaning",
+      cta: "Book a Service",
     },
     // Testimonials
     testimonials: {
       tagline: "TESTIMONIALS",
-      title: "We Love to Hear From Our",
-      titleHighlight: "Customers",
+      title: "What Our",
+      titleHighlight: "Customers Say",
       items: [
         {
-          text: "I can't say enough good things about this cleaning company! The team was super friendly, and they took care of my home like it was their own. My house looks brand new after just one visit. Now I can spend more time with my family instead of worrying about cleaning!",
+          text: "I can't say enough good things about Dekora Clean! They took care of my curtains and furniture like they were their own. My home looks brand new. Now I have more time for my family!",
           name: "María Fernanda R.",
           location: "Bogotá",
         },
         {
-          text: "We hired them for our office cleaning, and it's honestly made such a difference for our staff. They're always professional, use the best products, and the office smells amazing and everything feels organized and spotless each morning.",
+          text: "We hired them for our office furniture cleaning, and it's made such a difference. They're always professional, use the best products, and everything feels fresh and organized.",
           name: "Carlos Andrés T.",
           location: "Medellín",
         },
         {
-          text: "I needed post-construction cleaning after a big renovation, and I was worried about all the dust. The cleaning crew did an outstanding job—they got into hard-to-reach places. It was such a relief to walk into a spotless home after all that work!",
+          text: "I needed my car upholstery cleaned and they did an outstanding job. They got into hard-to-reach places. It was such a relief to get into a spotless car!",
           name: "Lucía M.",
           location: "Cali",
         },
@@ -167,28 +176,28 @@ export const translations = {
       title: "Frequently Asked Questions",
       items: [
         {
-          q: "What's included in a clean?",
-          a: "Our standard cleaning includes dusting, vacuuming, mopping, bathroom sanitization, kitchen cleaning, and trash removal. Deep cleans include additional services like inside appliances, baseboards, and detailed scrubbing.",
+          q: "What services do you offer?",
+          a: "We offer curtain and blind cleaning, carpet washing, furniture cleaning, wood flooring installation and maintenance, automotive upholstery cleaning, laundry and tailoring, and property repairs.",
         },
         {
-          q: "How much does it cost to clean my home?",
-          a: "Pricing depends on the size of your space and the type of cleaning needed. Contact us for a free, no-obligation quote tailored to your specific needs.",
+          q: "Do you provide free quotes?",
+          a: "Yes! We offer free quotes at your doorstep. Contact us and we'll visit your location to assess your needs at no cost.",
         },
         {
-          q: "What about my pets?",
-          a: "We love pets! Our eco-friendly products are safe for animals. Just let us know if you have pets so our cleaners can take appropriate precautions.",
+          q: "What types of curtains do you work with?",
+          a: "We work with all types: Japanese panels, blackout, Roman shades, screens, horizontal blinds, vertical blinds, and both classic and modern curtains.",
         },
         {
-          q: "Are the cleaning supplies included?",
-          a: "Yes! We bring all necessary cleaning supplies and equipment. We use professional-grade, eco-friendly products for the best results.",
+          q: "Do you sell products or just provide services?",
+          a: "We do both! We sell curtains, blinds, carpets, linens, and wood/laminate flooring, plus we provide installation and maintenance services.",
         },
         {
-          q: "What if I need to cancel my appointment?",
-          a: "We understand schedules change. Please notify us at least 24 hours in advance for cancellations or rescheduling at no charge.",
+          q: "What areas do you serve?",
+          a: "We serve Colombia, primarily in the major cities. Contact us to confirm service availability in your area.",
         },
         {
-          q: "Are you bonded and insured?",
-          a: "Yes, we are fully bonded and insured. All our cleaning professionals undergo thorough background checks for your peace of mind.",
+          q: "How do I schedule a service?",
+          a: "You can fill out our contact form, call us at +57 304 407 2499, or send us a WhatsApp message. We'll respond quickly to schedule your service.",
         },
       ],
     },
@@ -198,15 +207,15 @@ export const translations = {
       title: "Ready for a",
       titleHighlight: "Spotless",
       titleEnd: "Space?",
-      subtitle: "Book your cleaning today or request a free quote.",
-      primaryBtn: "Book a Cleaning",
+      subtitle: "Book your service today or request a free quote at your doorstep.",
+      primaryBtn: "Book a Service",
       secondaryBtn: "Call Now",
     },
     // Footer
     footer: {
       description: "Creating more pleasant environments through professional decoration and maintenance services in Colombia.",
       services: "Services",
-      serviceList: ["Home Cleaning", "Office Cleaning", "Curtains & Blinds", "Carpet Cleaning", "Furniture Cleaning", "Automotive Upholstery"],
+      serviceList: ["Curtains & Blinds", "Carpets & Rugs", "Furniture Cleaning", "Wood Flooring", "Automotive Upholstery", "Laundry & Tailoring"],
       contact: "Contact",
       hours: "Hours",
       hoursText: "Mon - Sat: 7:00 AM - 6:00 PM",
@@ -224,19 +233,19 @@ export const translations = {
     },
     // Hero
     hero: {
-      tagline: "SERVICIOS DE LIMPIEZA A TU MEDIDA",
+      tagline: "SERVICIOS DE LIMPIEZA Y DECORACIÓN",
       title: "Servicios de",
       titleHighlight: "Limpieza",
-      titleEnd: "Profesional",
-      subtitle: "Transforma tu hogar u oficina con nuestros servicios profesionales de limpieza. Personal confiable y verificado entregando resultados impecables.",
+      titleEnd: "y Mantenimiento",
+      subtitle: "Ambientes más agradables. Servicios profesionales de decoración y mantenimiento para tu hogar y oficina en Colombia.",
       cta: "Llámanos",
       features: {
         professional: "Equipo Profesional",
-        professionalDesc: "Personal capacitado y certificado",
+        professionalDesc: "Personal capacitado",
         onTime: "Servicio Puntual",
         onTimeDesc: "Valoramos tu tiempo",
-        transparent: "Precios Transparentes",
-        transparentDesc: "Sin costos ocultos",
+        transparent: "Cotización Gratis",
+        transparentDesc: "A domicilio",
         eco: "Eco Amigable",
         ecoDesc: "Productos seguros",
       },
@@ -249,13 +258,14 @@ export const translations = {
       phone: "Teléfono",
       service: "Tipo de Servicio",
       serviceOptions: {
-        residential: "Limpieza Residencial",
-        commercial: "Limpieza Comercial",
-        deep: "Limpieza Profunda",
         curtains: "Cortinas y Persianas",
         carpets: "Alfombras y Tapetes",
         furniture: "Lavado de Muebles",
-        upholstery: "Tapicería Automotriz",
+        linens: "Lencería y Ropa de Cama",
+        flooring: "Pisos de Madera y Laminados",
+        automotive: "Tapicería Automotriz",
+        repairs: "Arreglos Locativos",
+        laundry: "Lavandería y Sastrería",
       },
       message: "¿Cómo podemos ayudarte?",
       submit: "Solicitar Cotización",
@@ -271,35 +281,43 @@ export const translations = {
     },
     // Services
     services: {
-      tagline: "LIMPIEZA INTEGRAL PARA CADA NECESIDAD",
+      tagline: "SERVICIOS INTEGRALES PARA CADA NECESIDAD",
       title: "Nuestros",
       titleHighlight: "Servicios",
       titleEnd: "Para Tu Comodidad",
-      subtitle: "Desde limpiezas profundas hasta mantenimiento rutinario, ofrecemos soluciones a la medida para cada espacio.",
+      subtitle: "Desde limpieza profunda hasta decoración y mantenimiento, ofrecemos soluciones a la medida para cada espacio.",
       items: {
-        residential: {
-          title: "Limpieza del Hogar",
-          desc: "Limpieza completa de habitaciones, baños, cocinas y áreas de estar para un hogar impecable cada vez.",
-        },
-        commercial: {
-          title: "Limpieza de Oficinas",
-          desc: "Limpieza regular o única de espacios de trabajo, escritorios y áreas comunes para crear un ambiente limpio y productivo.",
-        },
-        moveInOut: {
-          title: "Entrada/Salida",
-          desc: "Limpieza profunda para día de mudanza, asegurando que tu espacio antiguo o nuevo esté perfectamente limpio y listo.",
-        },
-        deep: {
-          title: "Limpieza Profunda",
-          desc: "Limpieza intensiva de arriba a abajo para tu hogar u oficina, llegando a rincones que necesitan atención extra.",
-        },
         curtains: {
           title: "Cortinas y Persianas",
-          desc: "Venta, lavado y mantenimiento de cortinas clásicas y modernas incluyendo panel japonés, blackout, romanas y más.",
+          desc: "Venta, lavado y mantenimiento de cortinas clásicas y modernas: panel japonés, blackout, romanas, screen, persianas horizontales y verticales.",
+        },
+        carpets: {
+          title: "Alfombras y Tapetes",
+          desc: "Venta y lavado profesional de todo tipo de alfombras y tapetes, restaurando su belleza y frescura original.",
         },
         furniture: {
           title: "Lavado de Muebles",
-          desc: "Limpieza profesional de muebles de sala, comedor y oficina para mantenerlos como nuevos.",
+          desc: "Limpieza profunda de muebles de sala, comedor y oficina. Restauramos la belleza de tus piezas tapizadas.",
+        },
+        linens: {
+          title: "Lencería y Ropa de Cama",
+          desc: "Venta y lavado profesional de lencería, ropa de cama y telas delicadas con cuidado especial.",
+        },
+        flooring: {
+          title: "Pisos de Madera y Laminados",
+          desc: "Venta, instalación y mantenimiento de pisos en madera y laminados. Soluciones completas para tus pisos.",
+        },
+        automotive: {
+          title: "Tapicería Automotriz",
+          desc: "Lavado profesional de asientos, alfombras e interior de vehículos. Tu carro como nuevo.",
+        },
+        repairs: {
+          title: "Arreglos Locativos",
+          desc: "Obra civil y arreglos locativos. Mejoras menores y mantenimiento para tu propiedad.",
+        },
+        laundry: {
+          title: "Lavandería y Sastrería",
+          desc: "Servicios profesionales de lavandería y sastrería para tus prendas y telas especiales.",
         },
       },
     },
@@ -312,16 +330,16 @@ export const translations = {
       subtitle: "Ya sea tu hogar o lugar de trabajo, nuestro amable equipo llega puntual, usa productos seguros y deja tu espacio brillando.",
       features: {
         insured: {
-          title: "Personal Asegurado y Verificado",
-          desc: "Cada empleado pasa verificaciones exhaustivas de antecedentes y está completamente asegurado para tu tranquilidad.",
+          title: "Personal Profesional y Verificado",
+          desc: "Cada miembro del equipo está capacitado y verificado para tu tranquilidad.",
         },
         flexible: {
-          title: "Horarios Flexibles Que Se Adaptan a Ti",
+          title: "Horarios Flexibles",
           desc: "Reserva la hora que mejor te funcione—mañanas, tardes o fines de semana.",
         },
         eco: {
-          title: "Productos Eco-Amigables, Seguros para Niños y Mascotas",
-          desc: "Usamos productos de limpieza verdes, no tóxicos, que son suaves y efectivos.",
+          title: "Productos Eco-Amigables",
+          desc: "Usamos productos de limpieza verdes, no tóxicos, seguros y efectivos.",
         },
         guarantee: {
           title: "100% Garantía de Satisfacción",
@@ -335,22 +353,22 @@ export const translations = {
       title: "Pasos Simples Hacia un Espacio",
       titleHighlight: "Más Limpio",
       titleEnd: "",
-      subtitle: "Nuestros profesionales capacitados entregan resultados excepcionales usando agentes de limpieza potentes y técnicas comprobadas.",
+      subtitle: "Nuestros profesionales capacitados entregan resultados excepcionales usando los mejores productos y técnicas comprobadas.",
       steps: {
         quote: {
           title: "Solicita una Cotización",
-          desc: "Llena nuestro formulario rápido o llámanos.",
+          desc: "Llena nuestro formulario o llámanos. ¡Cotización gratis a domicilio!",
         },
         book: {
           title: "Reserva Tu Servicio",
           desc: "Elige tu hora preferida. Nos adaptamos a tu horario.",
         },
         relax: {
-          title: "Relájate",
-          desc: "Nuestro equipo hace el resto. Vuelves a un espacio brillante.",
+          title: "Relájate y Disfruta",
+          desc: "Nuestro equipo hace el trabajo. Tú disfrutas los resultados.",
         },
       },
-      cta: "Reservar Limpieza",
+      cta: "Reservar Servicio",
     },
     // Testimonials
     testimonials: {
@@ -359,17 +377,17 @@ export const translations = {
       titleHighlight: "Clientes",
       items: [
         {
-          text: "¡No tengo sino cosas buenas que decir de esta empresa de limpieza! El equipo fue súper amable y cuidaron mi casa como si fuera la suya. Mi hogar quedó como nuevo después de una sola visita. ¡Ahora puedo pasar más tiempo con mi familia en vez de preocuparme por la limpieza!",
+          text: "¡No tengo sino cosas buenas que decir de Dekora Clean! Cuidaron mis cortinas y muebles como si fueran suyos. Mi casa quedó como nueva. ¡Ahora tengo más tiempo para mi familia!",
           name: "María Fernanda R.",
           location: "Bogotá",
         },
         {
-          text: "Los contratamos para la limpieza de nuestra oficina, y la verdad ha hecho una diferencia enorme para nuestro equipo. Siempre son profesionales, usan los mejores productos, y la oficina huele delicioso y todo se siente organizado e impecable cada mañana.",
+          text: "Los contratamos para el lavado de muebles de la oficina, y la verdad ha hecho una diferencia enorme. Siempre son profesionales, usan los mejores productos, y todo se siente fresco y organizado.",
           name: "Carlos Andrés T.",
           location: "Medellín",
         },
         {
-          text: "Necesitaba limpieza post-construcción después de una gran renovación, y me preocupaba todo el polvo. El equipo de limpieza hizo un trabajo espectacular—llegaron a lugares difíciles de alcanzar. ¡Fue un alivio entrar a una casa impecable después de tanto trabajo!",
+          text: "Necesitaba limpiar la tapicería de mi carro y quedó espectacular. Llegaron a lugares difíciles de alcanzar. ¡Fue un alivio entrar a un carro impecable!",
           name: "Lucía M.",
           location: "Cali",
         },
@@ -381,28 +399,28 @@ export const translations = {
       title: "Preguntas Frecuentes",
       items: [
         {
-          q: "¿Qué incluye una limpieza?",
-          a: "Nuestra limpieza estándar incluye desempolvado, aspirado, trapeado, sanitización de baños, limpieza de cocina y retiro de basura. Las limpiezas profundas incluyen servicios adicionales como interior de electrodomésticos, zócalos y fregado detallado.",
+          q: "¿Qué servicios ofrecen?",
+          a: "Ofrecemos lavado de cortinas y persianas, lavado de alfombras, lavado de muebles, instalación y mantenimiento de pisos de madera, tapicería automotriz, lavandería y sastrería, y arreglos locativos.",
         },
         {
-          q: "¿Cuánto cuesta limpiar mi casa?",
-          a: "El precio depende del tamaño de tu espacio y el tipo de limpieza necesaria. Contáctanos para una cotización gratis y sin compromiso adaptada a tus necesidades específicas.",
+          q: "¿Ofrecen cotización gratis?",
+          a: "¡Sí! Cotizamos sin costo a domicilio. Contáctanos y visitaremos tu ubicación para evaluar tus necesidades sin ningún costo.",
         },
         {
-          q: "¿Qué pasa con mis mascotas?",
-          a: "¡Amamos a las mascotas! Nuestros productos eco-amigables son seguros para animales. Solo avísanos si tienes mascotas para que nuestros limpiadores tomen las precauciones apropiadas.",
+          q: "¿Qué tipos de cortinas trabajan?",
+          a: "Trabajamos con todo tipo: panel japonés, blackout, romanas, screen, persianas horizontales, persianas verticales, y cortinas clásicas y modernas.",
         },
         {
-          q: "¿Los productos de limpieza están incluidos?",
-          a: "¡Sí! Traemos todos los suministros y equipos de limpieza necesarios. Usamos productos eco-amigables de grado profesional para los mejores resultados.",
+          q: "¿Venden productos o solo dan servicios?",
+          a: "¡Hacemos ambas cosas! Vendemos cortinas, persianas, alfombras, lencería y pisos de madera/laminados, además de servicios de instalación y mantenimiento.",
         },
         {
-          q: "¿Qué pasa si necesito cancelar mi cita?",
-          a: "Entendemos que los horarios cambian. Por favor notifícanos con al menos 24 horas de anticipación para cancelaciones o reprogramaciones sin cargo.",
+          q: "¿Qué zonas atienden?",
+          a: "Atendemos en Colombia, principalmente en las ciudades principales. Contáctanos para confirmar disponibilidad de servicio en tu zona.",
         },
         {
-          q: "¿Están asegurados?",
-          a: "Sí, estamos completamente asegurados. Todos nuestros profesionales de limpieza pasan verificaciones exhaustivas de antecedentes para tu tranquilidad.",
+          q: "¿Cómo agendo un servicio?",
+          a: "Puedes llenar nuestro formulario de contacto, llamarnos al +57 304 407 2499, o enviarnos un mensaje de WhatsApp. Responderemos rápido para agendar tu servicio.",
         },
       ],
     },
@@ -412,15 +430,15 @@ export const translations = {
       title: "¿Listo para un Espacio",
       titleHighlight: "Impecable",
       titleEnd: "?",
-      subtitle: "Reserva tu limpieza hoy o solicita una cotización gratis.",
-      primaryBtn: "Reservar Limpieza",
+      subtitle: "Reserva tu servicio hoy o solicita una cotización gratis a domicilio.",
+      primaryBtn: "Reservar Servicio",
       secondaryBtn: "Llamar Ahora",
     },
     // Footer
     footer: {
       description: "Creando ambientes más agradables a través de servicios profesionales de decoración y mantenimiento en Colombia.",
       services: "Servicios",
-      serviceList: ["Limpieza del Hogar", "Limpieza de Oficinas", "Cortinas y Persianas", "Lavado de Alfombras", "Lavado de Muebles", "Tapicería Automotriz"],
+      serviceList: ["Cortinas y Persianas", "Alfombras y Tapetes", "Lavado de Muebles", "Pisos de Madera", "Tapicería Automotriz", "Lavandería y Sastrería"],
       contact: "Contacto",
       hours: "Horario",
       hoursText: "Lun - Sáb: 7:00 AM - 6:00 PM",
