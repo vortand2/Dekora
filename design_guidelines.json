@@ -1,0 +1,109 @@
+{
+  "theme": "light",
+  "archetype": "1_organic_earthy",
+  "archetype_description": "Clean, grounded, and trustworthy. Base colors are warm whites and stone greys to represent the physical home, with sharp, crisp Cobalt blue accents for the 'clean/water' association, strictly avoiding banned teal/purple. E1 Strategy: Prioritize high-end hotel cleanliness vibes over cheap generic service vibes.",
+  "colors": {
+    "primary": "#2563eb",
+    "primary_hover": "#1d4ed8",
+    "background": "#fafaf9",
+    "surface": "#ffffff",
+    "surface_secondary": "#f5f5f4",
+    "text_main": "#1c1917",
+    "text_muted": "#57534e",
+    "border": "#e7e5e4",
+    "accent": "#facc15",
+    "danger": "#ef4444"
+  },
+  "typography": {
+    "heading_font": "Outfit, sans-serif",
+    "body_font": "Work Sans, sans-serif",
+    "h1": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-900 leading-tight",
+    "h2": "text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-stone-900",
+    "h3": "text-xl sm:text-2xl font-medium tracking-tight text-stone-900",
+    "body": "text-base text-stone-600 leading-relaxed",
+    "overline": "text-sm text-blue-600 font-bold uppercase tracking-[0.2em]"
+  },
+  "layout": {
+    "spacing_scale": "Generous (py-24 to py-32 for major sections)",
+    "container_max": "max-w-7xl mx-auto px-6 lg:px-8",
+    "grid_strategy": "Tetris grid for Services (md:grid-cols-12, varying spans). Asymmetrical bento box for 'Why Choose Us'.",
+    "border_radius": "rounded-2xl for major containers, rounded-full for buttons"
+  },
+  "surfaces": {
+    "header": "backdrop-blur-xl bg-white/90 border-b border-stone-200 shadow-sm sticky top-0 z-50",
+    "cards": "bg-white border border-stone-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-300",
+    "hero_overlay": "bg-stone-900/40"
+  },
+  "components": {
+    "button_primary": "bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors px-8 py-4 rounded-full flex items-center justify-center gap-2",
+    "button_secondary": "bg-white text-stone-900 border border-stone-200 font-medium hover:bg-stone-50 transition-colors px-8 py-4 rounded-full flex items-center justify-center gap-2",
+    "whatsapp_float": "fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-transform duration-300 z-50 flex items-center justify-center hover:scale-110",
+    "form_input": "w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all placeholder:text-stone-400"
+  },
+  "media": {
+    "hero_bg": {
+      "url": "https://images.unsplash.com/photo-1758273238947-7eb530b408e4",
+      "description": "Woman happily vacuuming a bright, modern room - use as hero background with bg-stone-900/40 overlay. Must be max-h-[80vh] on mobile.",
+      "category": "hero"
+    },
+    "service_residential": {
+      "url": "https://images.unsplash.com/photo-1758273705627-937374bfa978",
+      "description": "Woman vacuuming modern living room",
+      "category": "services"
+    },
+    "service_commercial": {
+      "url": "https://images.unsplash.com/photo-1697463624716-cd2f0423d9d9",
+      "description": "Modern office setting for commercial cleaning",
+      "category": "services"
+    },
+    "service_deep_clean": {
+      "url": "https://images.unsplash.com/photo-1546552696-7d5f4e89b0e8",
+      "description": "High end cleaning tools layout",
+      "category": "services"
+    },
+    "about_housekeeper": {
+      "url": "https://images.pexels.com/photos/9462192/pexels-photo-9462192.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Female housekeeper smiling holding tools - use for 'Why Choose Us' section",
+      "category": "about"
+    },
+    "testimonial_1": {
+      "url": "https://images.unsplash.com/photo-1753161023792-d240af5e6ef7",
+      "description": "Smiling female customer",
+      "category": "testimonials"
+    },
+    "testimonial_2": {
+      "url": "https://images.unsplash.com/photo-1753161023962-665967602405",
+      "description": "Smiling female customer 2",
+      "category": "testimonials"
+    }
+  },
+  "sections_required": [
+    "Header (Logo: Dekora Clean S.A.S, Navigation, Language Selector EN/ES)",
+    "Hero (Full width background image with overlay. Split content: Left is Headline/Value Prop, Right is Contact/Booking Form using Resend)",
+    "Stats (Grid of 3-4 metrics: 500+ Homes Cleaned, 100% Satisfaction, etc.)",
+    "Services Grid (Cards for Residential, Commercial, and Deep Cleaning)",
+    "Why Choose Us (Bento grid layout showcasing reliability, eco-friendly products, and trained staff, with the about_housekeeper image)",
+    "How It Works (1. Book, 2. We Clean, 3. Relax)",
+    "Testimonials (Colombian Spanish reviews with English translations visible via toggle or presented bilingually)",
+    "FAQ (Accordion using Shadcn UI)",
+    "CTA (High impact section with solid blue background and large text prompting to book)",
+    "Footer (Contact info, address, business card details, social links)"
+  ],
+  "technical_instructions": [
+    "Template Adherence: The user provided a specific template design. Follow its structural flow exactly. Align components to match its layout logic (e.g. if form is in hero, keep it in hero).",
+    "Language Toggle: Implement a React state-based language switcher (EN/ES) in the Header. Ensure all hardcoded text responds to this toggle.",
+    "Form Integration: The contact form MUST be wired up to use Resend for email delivery.",
+    "WhatsApp Float: Render a fixed floating WhatsApp button bottom-right. The link MUST be https://wa.me/573044072499 (includes +57 for Colombia).",
+    "Testing: Apply `data-testid` to all interactive elements, e.g., `data-testid='language-toggle'`, `data-testid='hero-contact-submit'`.",
+    "Components: Use Shadcn UI for Form, Accordion (FAQ), and Select (Language Toggle). heavily customize them to remove standard 'Vercel' look and match the specified theme.",
+    "Fonts: Import 'Outfit' and 'Work Sans' from Google Fonts in index.css. Do NOT use Inter for headings."
+  ],
+  "content_details": {
+    "company_name": "Dekora Clean S.A.S",
+    "domain": "dekoraclean.com",
+    "phone": "304 407 2499",
+    "whatsapp_link": "https://wa.me/573044072499",
+    "country": "Colombia",
+    "languages": ["English", "Spanish"]
+  }
+}
