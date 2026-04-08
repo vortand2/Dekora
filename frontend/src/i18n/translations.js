@@ -3,6 +3,7 @@ export const translations = {
     // Header
     nav: {
       services: "Services",
+      gallery: "Gallery",
       about: "About Us",
       testimonials: "Testimonials",
       faq: "FAQ",
@@ -226,6 +227,7 @@ export const translations = {
     // Header
     nav: {
       services: "Servicios",
+      gallery: "Galería",
       about: "Nosotros",
       testimonials: "Testimonios",
       faq: "Preguntas",

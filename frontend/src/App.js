@@ -2,6 +2,7 @@ import { useState, useEffect, createContext, useContext } from "react";
 import "@/App.css";
 import axios from "axios";
 import { translations } from "./i18n/translations";
+import { galleryImages, galleryCategories, galleryTexts } from "./config/gallery";
 import { 
   Phone, 
   Mail, 
@@ -28,7 +29,8 @@ import {
   X,
   ChevronRight,
   Users,
-  Layers
+  Layers,
+  ZoomIn
 } from "lucide-react";
 import {
   Accordion,
@@ -95,7 +97,7 @@ const Header = ({ t, lang, setLang }) => {
           <a href="/" data-testid="logo"><Logo light={!isScrolled} /></a>
 
           <nav className="hidden lg:flex items-center gap-6">
-            {['services', 'about', 'testimonials', 'faq'].map((item) => (
+            {['services', 'gallery', 'about', 'testimonials', 'faq'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollTo(item)}
@@ -144,7 +146,7 @@ const Header = ({ t, lang, setLang }) => {
 
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white border-t py-3 -mx-5 px-5" data-testid="mobile-menu">
-            {['services', 'about', 'testimonials', 'faq'].map((item) => (
+            {['services', 'gallery', 'about', 'testimonials', 'faq'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollTo(item)}
@@ -476,6 +478,113 @@ const HowItWorksSection = ({ t }) => {
   );
 };
 
+// Gallery Section
+const GallerySection = ({ lang }) => {
+  const [filter, setFilter] = useState("all");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const texts = galleryTexts[lang];
+
+  const filteredImages = filter === "all" 
+    ? galleryImages 
+    : galleryImages.filter(img => img.category === filter);
+
+  const activeCategories = ["all", ...new Set(galleryImages.map(img => img.category))];
+
+  return (
+    <section id="gallery" className="section" data-testid="gallery-section">
+      <div className="container">
+        <div className="text-center mb-10">
+          <p className="overline mb-2">{texts.tagline}</p>
+          <h2 className="heading-md">
+            {texts.title} <span className="text-[#2ED573]">{texts.titleHighlight}</span>
+          </h2>
+          <p className="text-[#57606F] mt-3 max-w-xl mx-auto text-sm">{texts.subtitle}</p>
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {activeCategories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                filter === cat
+                  ? "bg-[#2ED573] text-white"
+                  : "bg-[#F8FAFB] text-[#57606F] hover:bg-[#E8ECEF]"
+              }`}
+              data-testid={`filter-${cat}`}
+            >
+              {galleryCategories[cat]?.[lang] || cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {filteredImages.map((image) => (
+            <div
+              key={image.id}
+              className="gallery-item group relative overflow-hidden rounded-xl cursor-pointer"
+              onClick={() => setSelectedImage(image)}
+              data-testid={`gallery-item-${image.id}`}
+            >
+              <img
+                src={image.src}
+                alt={lang === "es" ? image.title : image.titleEn}
+                className="w-full h-48 md:h-56 object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <p className="text-white text-sm font-medium">
+                    {lang === "es" ? image.title : image.titleEn}
+                  </p>
+                </div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <ZoomIn className="w-5 h-5 text-white" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {filteredImages.length === 0 && (
+          <p className="text-center text-[#A4B0BE] py-8">
+            {lang === "es" ? "No hay imágenes en esta categoría" : "No images in this category"}
+          </p>
+        )}
+      </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+          data-testid="gallery-lightbox"
+        >
+          <button
+            className="absolute top-4 right-4 text-white hover:text-[#2ED573] transition-colors"
+            onClick={() => setSelectedImage(null)}
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <div className="max-w-4xl max-h-[80vh] relative" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={selectedImage.src}
+              alt={lang === "es" ? selectedImage.title : selectedImage.titleEn}
+              className="max-w-full max-h-[70vh] object-contain rounded-lg"
+            />
+            <p className="text-white text-center mt-4 text-lg font-medium">
+              {lang === "es" ? selectedImage.title : selectedImage.titleEn}
+            </p>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
 // Testimonials
 const TestimonialsSection = ({ t }) => (
   <section id="testimonials" className="section section-gray" data-testid="testimonials-section">
@@ -656,6 +765,7 @@ function App() {
           <ServicesSection t={t} />
           <WhyChooseUsSection t={t} />
           <HowItWorksSection t={t} />
+          <GallerySection lang={lang} />
           <TestimonialsSection t={t} />
           <FAQSection t={t} />
           <CTASection t={t} />

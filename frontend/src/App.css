@@ -356,3 +356,18 @@
         grid-template-columns: repeat(4, 1fr);
     }
 }
+
+/* Gallery */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #F8FAFB;
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
