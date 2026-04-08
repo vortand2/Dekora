@@ -34,9 +34,10 @@
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     background: #1E272E;
     overflow: hidden;
+    padding-top: 80px;
 }
 
 .hero-bg {

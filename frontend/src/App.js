@@ -196,7 +196,7 @@ const HeroSection = ({ t }) => {
       />
       <div className="hero-overlay" />
       
-      <div className="container relative z-10 py-24 lg:py-32">
+      <div className="container relative z-10 py-16 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           <div className="text-white">
             <p className="overline !text-[#2ED573] mb-3 text-xs">{t.hero.tagline}</p>
