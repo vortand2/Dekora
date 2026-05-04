@@ -61,13 +61,13 @@ const WhatsAppIcon = ({ className = "w-6 h-6" }) => (
 );
 
 const Logo = ({ light = false }) => (
-  <div className="flex items-center gap-2">
+  <div className="flex items-center gap-3">
     <img 
-      src="https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/6k2bpzw0_have%20%281%29.png" 
+      src="https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/r05yyvov_have%20%282%29.png" 
       alt="Dekora Clean Logo" 
-      className="h-8 w-auto"
+      className="h-10 w-auto"
     />
-    <span className={`text-lg font-bold ${light ? 'text-white' : 'text-[#1E272E]'}`}>
+    <span className={`text-xl font-bold ${light ? 'text-white' : 'text-[#1E272E]'}`}>
       Dekora <span className="text-[#2ED573]">Clean</span>
     </span>
   </div>
