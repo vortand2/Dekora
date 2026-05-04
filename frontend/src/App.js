@@ -382,7 +382,7 @@ const WhyChooseUsSection = ({ t }) => {
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div className="relative order-2 lg:order-1">
             <img
-              src="https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg?auto=compress&cs=tinysrgb&w=600"
+              src="https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/e39wzop4_Hero%20Image.png"
               alt="Professional cleaner"
               className="rounded-xl shadow-lg w-full object-cover max-h-[400px]"
             />
