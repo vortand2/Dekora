@@ -25,59 +25,52 @@
 
 export const galleryImages = [
   // ============================================
-  // EJEMPLOS - Reemplaza con tus propias imágenes
+  // TRABAJOS REALES DE DEKORA CLEAN
   // ============================================
   
   {
     id: 1,
-    src: "https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=600",
+    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/33ohb906_Curtain%20installation.png",
     category: "curtains",
     title: "Instalación de cortinas blackout",
     titleEn: "Blackout curtains installation"
   },
   {
     id: 2,
-    src: "https://images.pexels.com/photos/6782567/pexels-photo-6782567.jpeg?auto=compress&cs=tinysrgb&w=600",
+    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/ezcltcvu_Window%20bling%20cleaning%202.png",
+    category: "curtains",
+    title: "Limpieza de persianas verticales",
+    titleEn: "Vertical blinds cleaning"
+  },
+  {
+    id: 3,
+    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/nxlo7bxv_carpet%20cleaning.png",
+    category: "carpets",
+    title: "Lavado profesional de alfombra",
+    titleEn: "Professional carpet cleaning"
+  },
+  {
+    id: 4,
+    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/h4ee0sry_Sofa%20cleaning.png",
     category: "furniture",
     title: "Lavado de sofá seccional",
     titleEn: "Sectional sofa cleaning"
   },
   {
-    id: 3,
-    src: "https://images.pexels.com/photos/6492403/pexels-photo-6492403.jpeg?auto=compress&cs=tinysrgb&w=600",
-    category: "carpets",
-    title: "Limpieza profunda de alfombra",
-    titleEn: "Deep carpet cleaning"
-  },
-  {
-    id: 4,
-    src: "https://images.pexels.com/photos/6195280/pexels-photo-6195280.jpeg?auto=compress&cs=tinysrgb&w=600",
-    category: "curtains",
-    title: "Persianas verticales oficina",
-    titleEn: "Office vertical blinds"
-  },
-  {
     id: 5,
-    src: "https://images.pexels.com/photos/6782351/pexels-photo-6782351.jpeg?auto=compress&cs=tinysrgb&w=600",
-    category: "furniture",
-    title: "Restauración de sillas de comedor",
-    titleEn: "Dining chairs restoration"
-  },
-  {
-    id: 6,
-    src: "https://images.pexels.com/photos/4792489/pexels-photo-4792489.jpeg?auto=compress&cs=tinysrgb&w=600",
+    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/x0uib2kh_Car%20Cleaning%202.png",
     category: "automotive",
     title: "Limpieza interior de vehículo",
     titleEn: "Vehicle interior cleaning"
   },
   
   // ============================================
-  // AGREGA TUS IMÁGENES AQUÍ ABAJO
+  // AGREGA MÁS IMÁGENES AQUÍ ABAJO
   // ============================================
   // 
   // Ejemplo:
   // {
-  //   id: 7,
+  //   id: 6,
   //   src: "https://tu-url-de-imagen.com/imagen.jpg",
   //   category: "furniture",
   //   title: "Descripción en español",
