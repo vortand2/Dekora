@@ -80,6 +80,9 @@ are non-fatal by design. Check the Render logs for `Email send failed`.
 
 - `backend/.env.example` lists the same variables for local development.
 - Never commit a real `.env`; only `.env.example` is tracked.
-- The site no longer depends on emergent.sh for images or email. The one remaining
-  reference, `@emergentbase/visual-edits` in `frontend/package.json`, is a build-time
-  editing plugin that is already guarded — the build succeeds without it.
+- The site has no remaining dependency on emergent.sh — images are served from this repo,
+  email goes through Resend, and the dev-only `@emergentbase/visual-edits` plugin (which
+  was fetched from `assets.emergent.sh` on every install) has been removed.
+- `frontend/.npmrc` sets `legacy-peer-deps=true`. It is required: eslint 9 conflicts with
+  the `@typescript-eslint` 5 that react-scripts pulls in, and without it a clean
+  `npm ci` fails. Don't delete it without fixing that conflict first.
