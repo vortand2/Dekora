@@ -52,8 +52,10 @@ Do the steps in order — the frontend needs the backend's URL before it can bui
 
 ## 4. Netlify (frontend)
 
-1. Add new site → import this repo. It reads `netlify.toml` (base `frontend`,
-   publish `frontend/build`).
+1. Add new site → import this repo. It reads `netlify.toml`, which sets base `frontend`
+   and publish `build` — publish is resolved relative to base, so that is `frontend/build`.
+   Do not "correct" it to `frontend/build`; that resolves to `frontend/frontend/build`
+   and publishes nothing.
 2. Site settings → Environment variables → `REACT_APP_BACKEND_URL` =
    the Render URL from step 3, no trailing slash.
 3. Deploy, then add `dekoraclean.com` under Domain management and point the DNS at Netlify.
