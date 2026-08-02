@@ -1,7 +1,8 @@
 [build]
   base = "frontend"
+  # publish is resolved relative to base, so this is frontend/build.
   command = "npm run build"
-  publish = "frontend/build"
+  publish = "build"
 
 [build.environment]
   # CRA treats warnings as errors on CI without this.
