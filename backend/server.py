@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
+import html
 import logging
 import httpx
 from pathlib import Path
@@ -54,7 +55,12 @@ SERVICE_LABELS = {
 
 def build_contact_email_html(contact) -> str:
     service = SERVICE_LABELS.get(contact.service_type, contact.service_type or "No especificado")
-    message = contact.message or "Sin mensaje"
+    # Escaped: every field below is public-form input rendered into HTML mail.
+    name = html.escape(contact.name)
+    email = html.escape(contact.email)
+    phone = html.escape(contact.phone)
+    service = html.escape(service)
+    message = html.escape(contact.message or "Sin mensaje")
     return f"""
     <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafb;padding:24px;font-family:Arial,sans-serif;">
       <tr><td align="center">
@@ -66,9 +72,9 @@ def build_contact_email_html(contact) -> str:
           <tr><td style="padding:32px;">
             <p style="margin:0 0 16px;color:#1e272e;font-size:15px;">Has recibido una nueva solicitud desde el sitio web:</p>
             <table width="100%" cellpadding="8" cellspacing="0" style="font-size:14px;color:#1e272e;">
-              <tr><td style="width:140px;color:#57606f;font-weight:bold;">Nombre:</td><td>{contact.name}</td></tr>
-              <tr><td style="color:#57606f;font-weight:bold;">Correo:</td><td>{contact.email}</td></tr>
-              <tr><td style="color:#57606f;font-weight:bold;">Teléfono:</td><td>{contact.phone}</td></tr>
+              <tr><td style="width:140px;color:#57606f;font-weight:bold;">Nombre:</td><td>{name}</td></tr>
+              <tr><td style="color:#57606f;font-weight:bold;">Correo:</td><td>{email}</td></tr>
+              <tr><td style="color:#57606f;font-weight:bold;">Teléfono:</td><td>{phone}</td></tr>
               <tr><td style="color:#57606f;font-weight:bold;">Servicio:</td><td>{service}</td></tr>
               <tr><td style="color:#57606f;font-weight:bold;vertical-align:top;">Mensaje:</td><td>{message}</td></tr>
             </table>
