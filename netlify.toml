@@ -1,0 +1,12 @@
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "frontend/build"
+
+[build.environment]
+  # CRA treats warnings as errors on CI without this.
+  CI = "false"
+  NODE_VERSION = "20"
+
+# REACT_APP_BACKEND_URL is set in the Netlify dashboard (Site settings > Environment
+# variables). It is baked into the bundle at build time, so changing it needs a redeploy.
