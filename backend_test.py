@@ -1,10 +1,14 @@
+import os
 import requests
 import sys
 from datetime import datetime
 import json
 
+# Override with API_BASE_URL, e.g. https://dekoraclean-api.onrender.com
+DEFAULT_BASE_URL = os.environ.get("API_BASE_URL", "http://localhost:8000")
+
 class DekoraCleanAPITester:
-    def __init__(self, base_url="https://dekoraclean-preview.preview.emergentagent.com"):
+    def __init__(self, base_url=DEFAULT_BASE_URL):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.tests_run = 0
