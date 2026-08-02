@@ -30,35 +30,35 @@ export const galleryImages = [
   
   {
     id: 1,
-    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/33ohb906_Curtain%20installation.png",
+    src: "/images/gallery/curtain-installation.jpg",
     category: "curtains",
     title: "Instalación de cortinas blackout",
     titleEn: "Blackout curtains installation"
   },
   {
     id: 2,
-    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/ezcltcvu_Window%20bling%20cleaning%202.png",
+    src: "/images/gallery/window-blind-cleaning.jpg",
     category: "curtains",
     title: "Limpieza de persianas verticales",
     titleEn: "Vertical blinds cleaning"
   },
   {
     id: 3,
-    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/nxlo7bxv_carpet%20cleaning.png",
+    src: "/images/gallery/carpet-cleaning.jpg",
     category: "carpets",
     title: "Lavado profesional de alfombra",
     titleEn: "Professional carpet cleaning"
   },
   {
     id: 4,
-    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/h4ee0sry_Sofa%20cleaning.png",
+    src: "/images/gallery/sofa-cleaning.jpg",
     category: "furniture",
     title: "Lavado de sofá seccional",
     titleEn: "Sectional sofa cleaning"
   },
   {
     id: 5,
-    src: "https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/x0uib2kh_Car%20Cleaning%202.png",
+    src: "/images/gallery/car-cleaning.jpg",
     category: "automotive",
     title: "Limpieza interior de vehículo",
     titleEn: "Vehicle interior cleaning"

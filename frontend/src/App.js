@@ -64,7 +64,7 @@ const WhatsAppIcon = ({ className = "w-6 h-6" }) => (
 const Logo = ({ light = false }) => (
   <div className="flex items-center gap-3">
     <img 
-      src="https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/r05yyvov_have%20%282%29.png" 
+      src="/images/logo.png"
       alt="Dekora Clean Logo" 
       className="h-10 w-auto"
     />
@@ -382,7 +382,7 @@ const WhyChooseUsSection = ({ t }) => {
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div className="relative order-2 lg:order-1">
             <img
-              src="https://customer-assets.emergentagent.com/job_dekoraclean-preview/artifacts/e39wzop4_Hero%20Image.png"
+              src="/images/hero.jpg"
               alt="Professional cleaner"
               className="rounded-xl shadow-lg w-full object-cover max-h-[400px]"
             />
