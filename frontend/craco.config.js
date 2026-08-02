@@ -18,7 +18,7 @@ if (config.enableHealthCheck) {
   healthPluginInstance = new WebpackHealthPlugin();
 }
 
-let webpackConfig = {
+const webpackConfig = {
   eslint: {
     configure: {
       extends: ["plugin:react-hooks/recommended"],
@@ -76,6 +76,5 @@ webpackConfig.devServer = (devServerConfig) => {
 
   return devServerConfig;
 };
-
 
 module.exports = webpackConfig;
