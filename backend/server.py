@@ -19,10 +19,12 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Email config (Emergent managed email proxy)
-EMAIL_BASE_URL = "https://integrations.emergentagent.com"
-EMAIL_KEY = os.environ.get("EMERGENT_EMAIL_KEY")
+# Email config (Resend)
+RESEND_API_URL = "https://api.resend.com/emails"
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 EMAIL_FROM_NAME = os.environ.get("EMAIL_FROM_NAME", "Dekora Clean S.A.S")
+# Must be a domain verified in Resend; onboarding@resend.dev only delivers to the account owner.
+EMAIL_FROM_ADDRESS = os.environ.get("EMAIL_FROM_ADDRESS", "onboarding@resend.dev")
 OWNER_EMAIL = os.environ.get("OWNER_EMAIL", "j-var79@gmail.com")
 
 # Create the main app
@@ -82,21 +84,21 @@ def build_contact_email_html(contact) -> str:
 
 async def send_contact_notification(contact) -> bool:
     """Send email notification to the business owner."""
-    if not EMAIL_KEY:
-        logger.warning("EMERGENT_EMAIL_KEY not set - skipping email notification")
+    if not RESEND_API_KEY:
+        logger.warning("RESEND_API_KEY not set - skipping email notification")
         return False
     payload = {
+        "from": f"{EMAIL_FROM_NAME} <{EMAIL_FROM_ADDRESS}>",
         "to": [OWNER_EMAIL],
         "subject": f"Nueva cotización de {contact.name} - Dekora Clean",
         "html": build_contact_email_html(contact),
-        "from_name": EMAIL_FROM_NAME,
-        "contact_email": contact.email,
+        "reply_to": contact.email,
     }
     try:
         async with httpx.AsyncClient(timeout=30) as http_client:
             resp = await http_client.post(
-                f"{EMAIL_BASE_URL}/api/v1/email/send",
-                headers={"X-Email-Key": EMAIL_KEY},
+                RESEND_API_URL,
+                headers={"Authorization": f"Bearer {RESEND_API_KEY}"},
                 json=payload,
             )
         resp.raise_for_status()
