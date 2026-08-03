@@ -102,6 +102,12 @@ export default async function handler(request) {
     return json(400, { error: "Invalid JSON" });
   }
 
+  // Honeypot: a hidden field no human fills in. Answer 200 so bots don't learn they failed.
+  if (typeof body?.website === "string" && body.website.trim() !== "") {
+    console.warn("Honeypot triggered - dropping submission");
+    return json(200, { success: true, message: "Formulario enviado exitosamente." });
+  }
+
   const { data, error } = validate(body);
   if (error) return json(422, { error });
 
@@ -129,13 +135,16 @@ export default async function handler(request) {
       }),
     });
   } catch (err) {
-    console.error("Resend request failed:", err.message);
+    // Log the submission itself: with no database, the log is the only way to recover a lead.
+    console.error("Resend request failed:", err.message, "| LEAD:", JSON.stringify(data));
     return json(502, { error: "Could not send email" });
   }
 
   if (!resendResponse.ok) {
     const detail = await resendResponse.text();
-    console.error(`Resend returned ${resendResponse.status}: ${detail}`);
+    console.error(
+      `Resend returned ${resendResponse.status}: ${detail} | LEAD: ${JSON.stringify(data)}`
+    );
     return json(502, { error: "Could not send email" });
   }
 

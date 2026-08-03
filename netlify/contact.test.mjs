@@ -57,6 +57,16 @@ assert.equal(sent.from, "Dekora Clean S.A.S <no-reply@dekoraclean.com>");
 assert.deepEqual(sent.to, ["owner@dekoraclean.com"]);
 assert.equal(sent.reply_to, "juan@example.com", "reply_to must be the submitter");
 
+// --- handler: honeypot swallows bots without sending mail ---
+captured = null;
+res = await post({ name: "Bot", email: "bot@spam.test", phone: "1", website: "http://spam.test" });
+assert.equal(res.status, 200, "honeypot should look like success to the bot");
+assert.equal(captured, null, "honeypot submission must not reach Resend");
+// an empty honeypot field is what real users send - must still go through
+res = await post({ name: "A", email: "a@b.co", phone: "1", website: "" });
+assert.equal(res.status, 200, "empty honeypot wrongly blocked");
+assert.ok(captured, "real submission with empty honeypot must reach Resend");
+
 // --- handler: failure paths ---
 global.fetch = async () => new Response("domain not verified", { status: 422 });
 assert.equal((await post({ name: "A", email: "a@b.co", phone: "1" })).status, 502, "Resend failure not surfaced");

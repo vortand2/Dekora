@@ -169,7 +169,7 @@ const Header = ({ t, lang, setLang }) => {
 // Hero
 const HeroSection = ({ t }) => {
   const [formData, setFormData] = useState({
-    name: "", email: "", phone: "", service_type: "", message: ""
+    name: "", email: "", phone: "", service_type: "", message: "", website: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -183,7 +183,7 @@ const HeroSection = ({ t }) => {
     try {
       await axios.post(`${API}/contact`, formData);
       toast.success(t.form.success);
-      setFormData({ name: "", email: "", phone: "", service_type: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", service_type: "", message: "", website: "" });
     } catch (error) {
       toast.error(t.form.error);
     } finally {
@@ -286,6 +286,18 @@ const HeroSection = ({ t }) => {
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="form-input min-h-[60px] resize-none text-sm"
                 data-testid="form-message"
+              />
+              {/* Honeypot: hidden off-screen rather than display:none, which bots skip.
+                  Hidden from assistive tech and the tab order; only bots fill it in. */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={formData.website}
+                onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }}
               />
               <button
                 type="submit"
