@@ -18,7 +18,7 @@ Live at **https://dekoraclean.netlify.app** (project `dekoraclean`).
 | `EMAIL_FROM_NAME`, `EMAIL_FROM_ADDRESS`, `OWNER_EMAIL` | Set on Netlify |
 | **`RESEND_API_KEY`** | **Not set — the form cannot send until you add it** |
 | Resend domain verification | Not done |
-| Custom domain `dekoraclean.com` | Not pointed here yet (parked at Hostinger) |
+| Custom domain `dekoraclean.com` | Registered on Netlify — awaiting the DNS change at Hostinger |
 | Git-triggered deploys | Working — push to `main` rebuilds and publishes |
 
 ---
@@ -43,11 +43,37 @@ Live at **https://dekoraclean.netlify.app** (project `dekoraclean`).
 > a 502 — a visible failure, not a silent one. That is deliberate: with no database, a
 > lead that fails to email is a lead that is gone, so the form must fail loudly.
 
-## 2. Custom domain
+## 2. Custom domain — Netlify side done, DNS change is yours
 
-Netlify → Domain management → add `dekoraclean.com`, then point the Hostinger DNS at
-Netlify. The domain is currently a parked Hostinger placeholder, so nothing is lost by
-switching it.
+`dekoraclean.com` is already registered on the Netlify project, with
+`www.dekoraclean.com` as an alias (www will redirect to the apex, matching the
+`canonical` and `og:url` tags the site already ships).
+
+All that is left is repointing DNS at **Hostinger** (hPanel → Domains → DNS / Nameservers →
+DNS Zone). Change these two records:
+
+| Type | Name | Current value | Change to |
+|---|---|---|---|
+| `A` | `@` | `2.57.91.91` (Hostinger parking) | `75.2.60.5` |
+| `CNAME` | `www` | `dekoraclean.com` | `dekoraclean.netlify.app` |
+
+`75.2.60.5` is Netlify's apex load balancer — verified by resolving
+`apex-loadbalancer.netlify.com`, not copied from memory.
+
+The domain currently has **no MX records**, so it carries no email and this change breaks
+nothing. If you ever add email on this domain, leave the MX records alone when editing.
+
+Once DNS propagates, Netlify provisions a Let's Encrypt certificate automatically — no
+action needed. Check progress with:
+
+```bash
+dig +short A dekoraclean.com && curl -sI https://dekoraclean.com | head -1
+```
+
+Expect `75.2.60.5` and `HTTP/2 200`. Propagation is usually minutes but can take hours.
+
+> Until this is done the site's social preview stays broken: `og:image` points at
+> `https://dekoraclean.com/images/hero-bg.jpg`, which only resolves once the domain is live.
 
 ## 3. Auto-deploy — already working
 
