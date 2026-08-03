@@ -195,7 +195,7 @@ const HeroSection = ({ t }) => {
     <section id="hero" className="hero" data-testid="hero-section">
       <div 
         className="hero-bg"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2070&q=80')` }}
+        style={{ backgroundImage: `url('/images/hero-bg.jpg')` }}
       />
       <div className="hero-overlay" />
       
@@ -480,7 +480,7 @@ const HowItWorksSection = ({ t }) => {
 
           <div className="hidden lg:block">
             <img
-              src="https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=600"
+              src="/images/about-1.jpg"
               alt="Cleaning service"
               className="rounded-xl shadow-2xl"
             />
@@ -691,7 +691,7 @@ const CTASection = ({ t }) => (
         </div>
         <div className="hidden lg:block">
           <img
-            src="https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?auto=compress&cs=tinysrgb&w=500"
+            src="/images/about-2.jpg"
             alt="Cleaning professional"
             className="rounded-xl shadow-2xl max-h-[300px] object-cover"
           />
