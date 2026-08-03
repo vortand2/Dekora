@@ -97,3 +97,6 @@ android-sdk/-e
 credentials.json
 *.key
 .credentials
+
+# Local Netlify folder
+.netlify

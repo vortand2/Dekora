@@ -52,14 +52,16 @@ Do the steps in order — the frontend needs the backend's URL before it can bui
 
 ## 4. Netlify (frontend)
 
-1. Add new site → import this repo. It reads `netlify.toml`: base = `frontend`,
-   publish = `build`. Netlify resolves publish relative to base, so the actual deploy
-   directory is `frontend/build`. **Leave the publish field set to `build`** — changing it
-   to `frontend/build` makes Netlify resolve `frontend/frontend/build`, which does not
-   exist, and the site deploys empty.
+The site already exists: **dekoraclean.netlify.app** (project `dekoraclean`), created and
+deployed from this repo, so steps 1 and 3 below are done. It reads `netlify.toml`
+(base `frontend`, publish `frontend/build`) — `publish` is relative to the repo root, not
+to `base`, so the `frontend/` prefix is required. Don't strip it.
+
+1. ~~Add new site → import this repo.~~ Done.
 2. Site settings → Environment variables → `REACT_APP_BACKEND_URL` =
-   the Render URL from step 3, no trailing slash.
-3. Deploy, then add `dekoraclean.com` under Domain management and point the DNS at Netlify.
+   the Render URL from step 3, no trailing slash. **Still needed** — until it is set, the
+   contact form posts to `undefined/api/contact` and fails. Redeploy after setting it.
+3. Add `dekoraclean.com` under Domain management and point the DNS at Netlify.
 
 > `REACT_APP_BACKEND_URL` is compiled into the JS bundle at build time, not read at
 > runtime. Changing it later requires a redeploy, not just a restart.
