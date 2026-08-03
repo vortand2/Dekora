@@ -20,8 +20,8 @@ Do the steps in order — the frontend needs the backend's URL before it can bui
 
 1. Sign up, then Domains → Add Domain → `dekoraclean.com`.
 2. Resend generates DNS records unique to your account (one DKIM `TXT`, an SPF/`MX` pair
-   for the sending subdomain). Add them at whoever hosts the DNS for dekoraclean.com,
-   then hit Verify. Propagation is usually minutes.
+   for the sending subdomain). DNS for dekoraclean.com is at **Hostinger** — add them
+   there, then hit Verify. Propagation is usually minutes.
 3. API Keys → create one with **Sending access** → this is `RESEND_API_KEY`.
 
 > Do not skip the domain verification. Without it you can only send from
@@ -52,12 +52,18 @@ Do the steps in order — the frontend needs the backend's URL before it can bui
 
 ## 4. Netlify (frontend)
 
-The site already exists: **dekoraclean.netlify.app** (project `dekoraclean`), created and
-deployed from this repo, so steps 1 and 3 below are done. It reads `netlify.toml`
-(base `frontend`, publish `frontend/build`) — `publish` is relative to the repo root, not
-to `base`, so the `frontend/` prefix is required. Don't strip it.
+The site already exists: **dekoraclean.netlify.app** (project `dekoraclean`), deployed from
+this repo. It reads `netlify.toml` (base `frontend`, publish `frontend/build`) — `publish`
+is relative to the repo root, not to `base`, so the `frontend/` prefix is required.
+Don't strip it.
 
-1. ~~Add new site → import this repo.~~ Done.
+> **No git-triggered deploys yet.** The site was created via CLI, so no repo is connected —
+> pushing to `main` does *not* redeploy. Until you connect it, deploy with
+> `netlify deploy --build --prod` from the repo root. To get push-to-deploy, open the
+> project's Build & deploy settings and link the GitHub repo (this authorises Netlify's
+> GitHub app, so it has to be done by you in the browser).
+
+1. ~~Add new site → import this repo.~~ Site created; repo not yet linked (see above).
 2. Site settings → Environment variables → `REACT_APP_BACKEND_URL` =
    the Render URL from step 3, no trailing slash. **Still needed** — until it is set, the
    contact form posts to `undefined/api/contact` and fails. Redeploy after setting it.
