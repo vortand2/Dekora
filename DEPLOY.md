@@ -1,99 +1,87 @@
 # Deploy — Dekora Clean
 
-Backend on Render, frontend on Netlify, database on MongoDB Atlas, email via Resend.
-Both hosts read config from this repo (`render.yaml`, `netlify.toml`), so the only manual
-work is creating accounts and pasting environment variables.
+Everything runs on Netlify: the React site is a static build, and the contact form is a
+Netlify Function that emails the owner through Resend. **No database, no separate backend
+server, no other hosting accounts.**
 
-Do the steps in order — the frontend needs the backend's URL before it can build.
+Live at **https://dekoraclean.netlify.app** (project `dekoraclean`).
 
 ---
 
-## 1. MongoDB Atlas
+## Status
 
-1. Create a free M0 cluster.
-2. Database Access → add a user, save the password.
-3. **Network Access → allow `0.0.0.0/0`.** Render's free tier has no static outbound IP,
-   so an IP allowlist will silently block every connection.
-4. Copy the connection string (`mongodb+srv://...`) → this is `MONGO_URL`.
+| Piece | State |
+|---|---|
+| Site build + deploy | Done — live |
+| Images | Served from this repo, no external CDN |
+| Contact form endpoint | Deployed at `/api/contact` |
+| `EMAIL_FROM_NAME`, `EMAIL_FROM_ADDRESS`, `OWNER_EMAIL` | Set on Netlify |
+| **`RESEND_API_KEY`** | **Not set — the form cannot send until you add it** |
+| Resend domain verification | Not done |
+| Custom domain `dekoraclean.com` | Not pointed here yet (parked at Hostinger) |
+| Git-triggered deploys | Not connected — deploys are manual for now |
 
-## 2. Resend
+---
 
-1. Sign up, then Domains → Add Domain → `dekoraclean.com`.
-2. Resend generates DNS records unique to your account (one DKIM `TXT`, an SPF/`MX` pair
-   for the sending subdomain). DNS for dekoraclean.com is at **Hostinger** — add them
-   there, then hit Verify. Propagation is usually minutes.
-3. API Keys → create one with **Sending access** → this is `RESEND_API_KEY`.
+## 1. Resend — the one thing blocking the form
 
-> Do not skip the domain verification. Without it you can only send from
-> `onboarding@resend.dev`, which Resend delivers **only to your own signup address** —
-> client leads then vanish with a logged 422 and no visible error on the site.
+1. Resend → Domains → Add Domain → `dekoraclean.com`.
+2. Resend gives you DNS records unique to your account (a DKIM `TXT`, plus an SPF/`MX`
+   pair for the sending subdomain). **DNS for this domain is at Hostinger** — add them
+   there, then hit Verify. Usually propagates in minutes.
+3. API Keys → create one with **Sending access**.
+4. Set it on Netlify:
 
-## 3. Render (backend)
+   ```bash
+   netlify env:set RESEND_API_KEY re_your_key_here
+   ```
 
-1. New → Blueprint → connect this repo. It reads `render.yaml` and creates
-   `dekoraclean-api` automatically.
-2. Set the environment variables (dashboard, not the repo):
+   Then redeploy so the function picks it up: `netlify deploy --build --prod`.
 
-   | Variable | Value |
-   |---|---|
-   | `MONGO_URL` | Atlas connection string from step 1 |
-   | `DB_NAME` | `dekoraclean` |
-   | `CORS_ORIGINS` | fill in after step 4 |
-   | `RESEND_API_KEY` | key from step 2 |
-   | `EMAIL_FROM_ADDRESS` | `no-reply@dekoraclean.com` |
-   | `EMAIL_FROM_NAME` | `Dekora Clean S.A.S` |
-   | `OWNER_EMAIL` | where quote requests should land |
+> `EMAIL_FROM_ADDRESS` is already set to `no-reply@dekoraclean.com`. Until step 2 is
+> verified, Resend will reject sends from that address with a 422 and the form will return
+> a 502 — a visible failure, not a silent one. That is deliberate: with no database, a
+> lead that fails to email is a lead that is gone, so the form must fail loudly.
 
-3. Deploy, then confirm `https://<your-service>.onrender.com/api/` returns
-   `{"message":"Dekora Clean API"}`.
+## 2. Custom domain
 
-> Free tier sleeps after ~15 min idle, so the first form submit after a quiet period takes
-> ~30s to respond. Upgrade to a paid instance if that's not acceptable.
+Netlify → Domain management → add `dekoraclean.com`, then point the Hostinger DNS at
+Netlify. The domain is currently a parked Hostinger placeholder, so nothing is lost by
+switching it.
 
-## 4. Netlify (frontend)
+## 3. Git-triggered deploys (optional)
 
-The site already exists: **dekoraclean.netlify.app** (project `dekoraclean`), deployed from
-this repo. It reads `netlify.toml` (base `frontend`, publish `frontend/build`) — `publish`
-is relative to the repo root, not to `base`, so the `frontend/` prefix is required.
-Don't strip it.
+The site was created from the CLI, so no repo is connected — pushing to `main` does **not**
+redeploy. To change that, open the project's Build & deploy settings and link the GitHub
+repo. That authorises Netlify's GitHub app, so it has to be done in a browser.
 
-> **No git-triggered deploys yet.** The site was created via CLI, so no repo is connected —
-> pushing to `main` does *not* redeploy. Until you connect it, deploy with
-> `netlify deploy --build --prod` from the repo root. To get push-to-deploy, open the
-> project's Build & deploy settings and link the GitHub repo (this authorises Netlify's
-> GitHub app, so it has to be done by you in the browser).
+Until then, deploy with:
 
-1. ~~Add new site → import this repo.~~ Site created; repo not yet linked (see above).
-2. Site settings → Environment variables → `REACT_APP_BACKEND_URL` =
-   the Render URL from step 3, no trailing slash. **Still needed** — until it is set, the
-   contact form posts to `undefined/api/contact` and fails. Redeploy after setting it.
-3. Add `dekoraclean.com` under Domain management and point the DNS at Netlify.
+```bash
+netlify deploy --build --prod
+```
 
-> `REACT_APP_BACKEND_URL` is compiled into the JS bundle at build time, not read at
-> runtime. Changing it later requires a redeploy, not just a restart.
+## 4. Verify
 
-## 5. Close the loop
+Submit a real enquiry on the live site and confirm:
+- the success toast appears,
+- the email arrives at `OWNER_EMAIL` (check spam on the first one),
+- replying to it addresses the customer, not yourself.
 
-1. Back in Render, set `CORS_ORIGINS` to your live origins, comma-separated, no spaces:
-   `https://dekoraclean.com,https://www.dekoraclean.com,https://<site>.netlify.app`
-   Redeploy the backend.
-2. Submit a real test enquiry on the live site. Confirm:
-   - the success message appears,
-   - the email arrives at `OWNER_EMAIL` (check spam on the first one),
-   - replying to that email addresses the customer, not yourself.
-
-If the form succeeds but no email arrives, the submission is still saved — email failures
-are non-fatal by design. Check the Render logs for `Email send failed`.
+If the form fails, check the function log: Netlify → Logs → Functions → `contact`.
 
 ---
 
 ## Notes
 
-- `backend/.env.example` lists the same variables for local development.
-- Never commit a real `.env`; only `.env.example` is tracked.
-- The site has no remaining dependency on emergent.sh — images are served from this repo,
-  email goes through Resend, and the dev-only `@emergentbase/visual-edits` plugin (which
-  was fetched from `assets.emergent.sh` on every install) has been removed.
-- `frontend/.npmrc` sets `legacy-peer-deps=true`. It is required: eslint 9 conflicts with
-  the `@typescript-eslint` 5 that react-scripts pulls in, and without it a clean
-  `npm ci` fails. Don't delete it without fixing that conflict first.
+- **`netlify.toml`**: `publish` is relative to the repo root, **not** to `base` — hence
+  `frontend/build`. Verified against the real CLI; setting it to `build` breaks the deploy.
+- **`frontend/.npmrc`** sets `legacy-peer-deps=true` and is load-bearing: eslint 9 conflicts
+  with the `@typescript-eslint` 5 that react-scripts pulls in, and without it a clean
+  `npm ci` fails. Don't delete it without fixing that conflict.
+- **Function self-check**: `node netlify/contact.test.mjs` — covers validation, HTML
+  escaping, the Resend request shape, and the failure paths. Keep it passing.
+- **The `backend/` FastAPI app and `render.yaml` are no longer used.** They implemented the
+  same form with a MongoDB record behind it. They're kept in the repo in case you ever want
+  the submissions database; nothing deploys them. Safe to delete otherwise.
+- The site has no dependency on emergent.sh.

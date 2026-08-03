@@ -48,7 +48,8 @@ import {
 } from "./components/ui/select";
 import { Toaster, toast } from "sonner";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+// Empty by default: /api/contact is served from a Netlify Function on the same origin.
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "";
 const API = `${BACKEND_URL}/api`;
 
 const LanguageContext = createContext();
