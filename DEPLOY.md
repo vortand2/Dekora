@@ -83,16 +83,27 @@ If the form fails, check the function log: Netlify → Logs → Functions → `c
 
 ## Notes
 
-- **`netlify.toml` deliberately sets no `base`.** With `base` set, `publish` resolves
-  relative to the repo root but the functions directory resolves relative to `base` — the
-  two disagree, and CI finds no functions while CLI deploys still work. Without `base`
-  every path is root-relative; the build command cds into `frontend` itself.
+- **`netlify.toml` deliberately sets no `base`.** Netlify's docs say both `publish` and
+  the functions directory resolve relative to `base`, but two independent `netlify build`
+  runs in a clean clone behaved asymmetrically — `publish` acted root-relative while the
+  functions directory acted base-relative, giving "targets a non-existing directory" and a
+  CI deploy with no contact endpoint (CLI deploys from the root kept working, hiding it).
+  Treat that as an unconfirmed CLI quirk, not settled fact. With no `base` the two
+  interpretations coincide, so the config is correct either way — which is why it's set up
+  this way. Don't reintroduce `base` without re-testing a git-triggered build.
 - **`SECRETS_SCAN_OMIT_KEYS`** is required, not cosmetic. Netlify fails a build when an
   env var's value appears in the output, and `EMAIL_FROM_NAME` is "Dekora Clean S.A.S",
   which is all over the page. `RESEND_API_KEY` is intentionally still scanned.
 - **`frontend/.npmrc`** sets `legacy-peer-deps=true` and is load-bearing: eslint 9 conflicts
   with the `@typescript-eslint` 5 that react-scripts pulls in, and without it a clean
   `npm ci` fails. Don't delete it without fixing that conflict.
+- **`OWNER_EMAIL` is public**, and not because of the secrets-scan exemption: it is a
+  hardcoded fallback in `netlify/functions/contact.mjs` in this public repo. The scanner
+  was never what protected it.
+- **When verifying, check the raw HTML too, not just the JS bundle.** The social/JSON-LD
+  image tags in `frontend/public/index.html` are invisible to a bundle scan — a hotlinked
+  Unsplash `og:image` survived a "no third-party images" sweep that way:
+  `curl -s https://dekoraclean.netlify.app | grep -oE 'https?://[^"]+' | grep -v dekoraclean`
 - **Function self-check**: `node netlify/contact.test.mjs` — covers validation, HTML
   escaping, the Resend request shape, and the failure paths. Keep it passing.
 - **Watch `frontend/.env` when deploying from the CLI.** It is gitignored, so it never
