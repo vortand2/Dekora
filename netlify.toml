@@ -1,14 +1,19 @@
 [build]
-  base = "frontend"
-  command = "npm run build"
-  # publish is relative to the repo root, NOT to base - verified against the real
-  # Netlify CLI, which resolves "build" to <root>/build and fails. Leave the frontend/ prefix.
+  # No `base` on purpose. With `base` set, `publish` stays repo-root relative but the
+  # functions directory resolves relative to base - so the two disagree and CI silently
+  # finds no functions. Without it, every path here is repo-root relative and consistent.
+  command = "cd frontend && npm ci && npm run build"
   publish = "frontend/build"
 
 [build.environment]
   # CRA treats warnings as errors on CI without this.
   CI = "false"
   NODE_VERSION = "20"
+  # Not secrets: these are the business name, public contact address and an empty
+  # string, and they appear in the built page by design. Left unlisted, Netlify's
+  # secrets scanner finds them in the output and fails the build.
+  # RESEND_API_KEY is deliberately NOT listed - it must keep being scanned.
+  SECRETS_SCAN_OMIT_KEYS = "EMAIL_FROM_NAME,EMAIL_FROM_ADDRESS,OWNER_EMAIL,REACT_APP_BACKEND_URL"
 
 [functions]
   directory = "netlify/functions"
@@ -18,6 +23,3 @@
   from = "/api/contact"
   to = "/.netlify/functions/contact"
   status = 200
-
-# REACT_APP_BACKEND_URL is set in the Netlify dashboard (Site settings > Environment
-# variables). It is baked into the bundle at build time, so changing it needs a redeploy.
