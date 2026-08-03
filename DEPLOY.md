@@ -13,13 +13,13 @@ Live at **https://dekoraclean.netlify.app** (project `dekoraclean`).
 | Piece | State |
 |---|---|
 | Site build + deploy | Done — live |
-| Images | Served from this repo, no external CDN |
 | Contact form endpoint | Deployed at `/api/contact` |
+| All images | Self-hosted — no third-party image CDN |
 | `EMAIL_FROM_NAME`, `EMAIL_FROM_ADDRESS`, `OWNER_EMAIL` | Set on Netlify |
 | **`RESEND_API_KEY`** | **Not set — the form cannot send until you add it** |
 | Resend domain verification | Not done |
 | Custom domain `dekoraclean.com` | Not pointed here yet (parked at Hostinger) |
-| Git-triggered deploys | Not connected — deploys are manual for now |
+| Git-triggered deploys | Working — push to `main` rebuilds and publishes |
 
 ---
 
@@ -49,13 +49,22 @@ Netlify → Domain management → add `dekoraclean.com`, then point the Hostinge
 Netlify. The domain is currently a parked Hostinger placeholder, so nothing is lost by
 switching it.
 
-## 3. Git-triggered deploys (optional)
+## 3. Auto-deploy — already working
 
-The site was created from the CLI, so no repo is connected — pushing to `main` does **not**
-redeploy. To change that, open the project's Build & deploy settings and link the GitHub
-repo. That authorises Netlify's GitHub app, so it has to be done in a browser.
+Pushing to `main` rebuilds and publishes automatically. Verified end to end.
 
-Until then, deploy with:
+How it is wired, in case it ever needs rebuilding:
+
+- Netlify clones over SSH (`ssh://git@github.com/vortand2/Dekora.git`) using a **read-only
+  deploy key** registered on the GitHub repo.
+- A GitHub `push` webhook calls a Netlify **build hook**.
+
+> The generic `https://api.netlify.com/hooks/github` endpoint does **not** work for this
+> site. It only serves sites connected through Netlify's GitHub app. GitHub still returns
+> 204 OK and the build silently never runs — indistinguishable from a healthy webhook
+> unless you check whether a deploy actually appeared.
+
+Manual deploys still work any time:
 
 ```bash
 netlify deploy --build --prod
@@ -74,8 +83,13 @@ If the form fails, check the function log: Netlify → Logs → Functions → `c
 
 ## Notes
 
-- **`netlify.toml`**: `publish` is relative to the repo root, **not** to `base` — hence
-  `frontend/build`. Verified against the real CLI; setting it to `build` breaks the deploy.
+- **`netlify.toml` deliberately sets no `base`.** With `base` set, `publish` resolves
+  relative to the repo root but the functions directory resolves relative to `base` — the
+  two disagree, and CI finds no functions while CLI deploys still work. Without `base`
+  every path is root-relative; the build command cds into `frontend` itself.
+- **`SECRETS_SCAN_OMIT_KEYS`** is required, not cosmetic. Netlify fails a build when an
+  env var's value appears in the output, and `EMAIL_FROM_NAME` is "Dekora Clean S.A.S",
+  which is all over the page. `RESEND_API_KEY` is intentionally still scanned.
 - **`frontend/.npmrc`** sets `legacy-peer-deps=true` and is load-bearing: eslint 9 conflicts
   with the `@typescript-eslint` 5 that react-scripts pulls in, and without it a clean
   `npm ci` fails. Don't delete it without fixing that conflict.
