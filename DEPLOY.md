@@ -81,6 +81,11 @@ If the form fails, check the function log: Netlify → Logs → Functions → `c
   `npm ci` fails. Don't delete it without fixing that conflict.
 - **Function self-check**: `node netlify/contact.test.mjs` — covers validation, HTML
   escaping, the Resend request shape, and the failure paths. Keep it passing.
+- **Watch `frontend/.env` when deploying from the CLI.** It is gitignored, so it never
+  shows up in a diff, but CRA reads it at build time — it still held the old emergent
+  preview URL and silently baked it into the first deploy, pointing the live form at a
+  dead host. It is now empty, and `REACT_APP_BACKEND_URL` is pinned to empty on Netlify so
+  no local file can override a deploy again.
 - **The `backend/` FastAPI app and `render.yaml` are no longer used.** They implemented the
   same form with a MongoDB record behind it. They're kept in the repo in case you ever want
   the submissions database; nothing deploys them. Safe to delete otherwise.
