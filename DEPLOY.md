@@ -23,6 +23,28 @@ Live at **https://dekoraclean.netlify.app** (project `dekoraclean`).
 
 ---
 
+## 0. One trip to Hostinger covers everything
+
+Both remaining items — the domain and email delivery — need DNS records at **Hostinger**
+(hPanel → Domains → DNS Zone). Do Resend's step 1 *first* so you can enter every record in
+a single visit:
+
+| Type | Name | Value | For |
+|---|---|---|---|
+| `A` | `@` | `75.2.60.5` | the website (**edit** the existing `2.57.91.91` record) |
+| `CNAME` | `www` | `dekoraclean.netlify.app` | www → apex redirect |
+| `TXT` + `MX` | *(given by Resend)* | *(given by Resend)* | email delivery |
+
+> **Edit the existing `A` record — do not add a second one.** DNS round-robins between
+> multiple `A` records, so leaving `2.57.91.91` in place makes the site load the parking
+> page part of the time. That is harder to diagnose than a site that is plainly down.
+
+Then check everything at once:
+
+```bash
+./scripts/verify-live.sh
+```
+
 ## 1. Resend — the one thing blocking the form
 
 1. Resend → Domains → Add Domain → `dekoraclean.com`.
@@ -38,10 +60,15 @@ Live at **https://dekoraclean.netlify.app** (project `dekoraclean`).
 
    Then redeploy so the function picks it up: `netlify deploy --build --prod`.
 
-> `EMAIL_FROM_ADDRESS` is already set to `no-reply@dekoraclean.com`. Until step 2 is
-> verified, Resend will reject sends from that address with a 422 and the form will return
-> a 502 — a visible failure, not a silent one. That is deliberate: with no database, a
-> lead that fails to email is a lead that is gone, so the form must fail loudly.
+> `EMAIL_FROM_ADDRESS` is already set to `no-reply@dekoraclean.com`. Until the domain is
+> verified, Resend rejects sends from that address and the form returns 502 — a visible
+> failure, not a silent one. That is deliberate: with no database, a lead that fails to
+> email is a lead that is gone, so the form must fail loudly.
+>
+> There is **no shortcut around verification.** Resend's shared `onboarding@resend.dev`
+> sender only delivers to the address the Resend account was registered with, and returns
+> 403 for anyone else — so it cannot receive customer enquiries.
+> See https://resend.com/docs/knowledge-base/403-error-resend-dev-domain
 
 ## 2. Custom domain — Netlify side done, DNS change is yours
 
