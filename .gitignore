@@ -100,3 +100,4 @@ credentials.json
 
 # Local Netlify folder
 .netlify
+.env*
